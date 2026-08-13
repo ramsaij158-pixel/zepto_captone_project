@@ -1,7 +1,7 @@
 import sqlite3
 from pathlib import Path
 
-from scraper import scrape_and_clean
+from datapipeline.scraper import scrape_and_clean
 
 
 DB_PATH = Path("books.db")

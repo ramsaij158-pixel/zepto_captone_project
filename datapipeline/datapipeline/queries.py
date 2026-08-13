@@ -1,6 +1,6 @@
 import sqlite3
 
-from database import DB_PATH
+from datapipeline.database import DB_PATH
 
 
 QUERIES = {
