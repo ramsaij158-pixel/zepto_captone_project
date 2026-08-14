@@ -38,21 +38,12 @@
 
   <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/light-707b19cf061aa459.css" /><link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/dark-93f3c6b445d800ff.css" /><link data-color-theme="light_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_high_contrast-fc4b867e16562d12.css" /><link data-color-theme="light_colorblind" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_colorblind-2db8d59cbe087225.css" /><link data-color-theme="light_colorblind_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_colorblind_high_contrast-791e59a1f8b634e0.css" /><link data-color-theme="light_tritanopia" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_tritanopia-a08991540f7253d8.css" /><link data-color-theme="light_tritanopia_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_tritanopia_high_contrast-aeaea6b5f1a1a577.css" /><link data-color-theme="dark_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_high_contrast-49511e11e3ed53a8.css" /><link data-color-theme="dark_colorblind" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_colorblind-507c9f8797b64d1c.css" /><link data-color-theme="dark_colorblind_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_colorblind_high_contrast-f74ce15fe4370f96.css" /><link data-color-theme="dark_tritanopia" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_tritanopia-77e8f27cae657ef7.css" /><link data-color-theme="dark_tritanopia_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_tritanopia_high_contrast-95c6d23fc206d719.css" /><link data-color-theme="dark_dimmed" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_dimmed-61d370fdb2984fe4.css" /><link data-color-theme="dark_dimmed_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_dimmed_high_contrast-a0271da34562fd22.css" />
 
-  <style type="text/css">
-    :root {
-      --tab-size-preference: 4;
-    }
 # Zepto Support Assistant
 
 An offline-first RAG service for Zepto policy questions. `MOCK_LLM` is enabled by default: leave it unset (or set `MOCK_LLM=1`) to make the complete, deterministic flow run without an API key or an LLM network call.
 
 ## Run locally
 
-```bash
-cd support_assistant
-python -m pip install -r requirements.txt
-uvicorn app.main:app --host 0.0.0.0 --port 7860
-```
 
 The first request loads the local `all-MiniLM-L6-v2` sentence-transformers model and creates the persistent Chroma database in `.chroma/`. The Docker build preloads those model weights so serving needs no model-provider network call. In an intentionally air-gapped developer machine where the weights were never cached, the app uses a deterministic token-vector contingency so the mock demonstration remains runnable; normal local/Docker usage uses MiniLM.
 
