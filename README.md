@@ -42,41 +42,91 @@
     :root {
       --tab-size-preference: 4;
     }
+# Zepto Support Assistant
 
-    pre, code {
-      tab-size: var(--tab-size-preference);
-    }
-  </style>
+An offline-first RAG service for Zepto policy questions. `MOCK_LLM` is enabled by default: leave it unset (or set `MOCK_LLM=1`) to make the complete, deterministic flow run without an API key or an LLM network call.
 
-    <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/primer-primitives-9f1db623a2d85734.css" />
-    <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/primer-tailwind-compatible-6069027f8e8b044a.css" />
-    <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/global-9c67779f7c7b843b.css" />
-    <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/github-59fc16002818df36.css" />
-    <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/tailwind-084de23feeb1726a.css" />
-  <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/repository-3aa75d4cd2374bb7.css" />
-<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/code-12d60eb17c94521c.css" />
+## Run locally
 
-  
+```bash
+cd support_assistant
+python -m pip install -r requirements.txt
+uvicorn app.main:app --host 0.0.0.0 --port 7860
+```
 
-  <script type="application/json" id="client-env">{"locale":"en","featureFlags":["actions_enable_background_steps","actions_workflow_language_service_allow_case_function","activity_diff_file_tree","activity_repos_file_tree","activity_repos_overview_header","activity_repos_overview_sidebar","agent_author_search_expansion","agent_author_search_expansion_ui_pulls","alternate_user_config_repo","billing_billable_licenses_cost_center_bucket_fix","billing_cost_center_list_assigned_resources","billing_cost_center_user_level_budgets","billing_discount_threshold_notification","billing_multi_user_cost_center_total_user_count","billing_ui_budget_pagination_enabled","billing_user_level_budgets","billing_user_level_budgets_manage","cca_combined_monthly_limit_meter","ccr_files_changed_model_picker","ccr_implement_suggestion_refresh","ccr_mcp_skills_ga","code_quality_enablement_banner_targeting","code_quality_new_repo_selection_card","code_quality_remove_preview","code_view_checks_live_updates","code_view_raf_sticky_lines","code_view_react_header","codemirror_inp_optimizations","codespaces_prebuild_region_target_update","coding_agent_create_task_strip","coding_agent_tbb_quota_banner","coding_agent_third_party_model_ui","contentful_primer_code_blocks","copilot_agent_snippy","copilot_api_agentic_issue_marshal_yaml","copilot_automations_pagination","copilot_chat_attach_multiple_images","copilot_chat_auto_mode_picker_paid","copilot_chat_category_rate_limit_messages","copilot_chat_clear_model_selection_for_default_change","copilot_chat_compact_tables","copilot_chat_disable_model_picker_while_streaming","copilot_chat_docked_panel","copilot_chat_enable_tool_call_logs","copilot_chat_header_reorder","copilot_chat_increase_token_padding","copilot_chat_input_commands","copilot_chat_interspersed_tool_calls","copilot_chat_max_upsell","copilot_chat_minimize_contextual","copilot_chat_model_picker_promotions","copilot_chat_models_browser_cache","copilot_chat_opening_thread_switch","copilot_chat_prettify_pasted_code","copilot_chat_reduce_quota_checks","copilot_chat_v1_citation_marker_sanitization","copilot_chat_vision_dotcom_chat_ga_gate","copilot_chat_vision_in_claude","copilot_chat_vision_preview_gate","copilot_cli_install_cta_max_plan","copilot_css_textarea_autosize","copilot_custom_copilots","copilot_custom_copilots_feature_preview","copilot_diff_explain_conversation_intent","copilot_diff_reference_context","copilot_duplicate_thread","copilot_extensions_removal_on_marketplace","copilot_fix_failed_workflows_all_skus","copilot_ftp_hyperspace_upgrade_prompt","copilot_global_menu_full_page_chat_label","copilot_hide_hovercard","copilot_immersive_code_block_transition_wrap","copilot_immersive_embedded_deferred_payload","copilot_immersive_embedded_draggable","copilot_immersive_embedded_header_button","copilot_immersive_embedded_implicit_references","copilot_immersive_embedded_skip_copilot_api_token_for_dotcom_context","copilot_immersive_file_block_transition_open","copilot_immersive_file_preview_keep_mounted","copilot_immersive_job_result_preview","copilot_immersive_suggestion_pills","copilot_immersive_task_hyperlinking","copilot_immersive_task_within_chat_thread","copilot_issue_list_show_more","copilot_mc_cli_resume_any_users_task","copilot_mc_nudge_redesign_app","copilot_mc_nudges","copilot_mission_control_agent_filtering","copilot_mission_control_agents_page_redesign","copilot_mission_control_environment_list_icons","copilot_mission_control_grouped_tasks_endpoint","copilot_mission_control_needs_attention","copilot_mission_control_reasoning_effort","copilot_mission_control_sandbox_remote_bypass","copilot_mission_control_session_events_ui","copilot_mission_control_session_filters","copilot_mission_control_task_alive_updates","copilot_mission_control_task_sharing","copilot_org_policy_page_focus_mode","copilot_plans_signups_enabled","copilot_pr_chat_enhancements","copilot_premium_request_quotas","copilot_prominent_upgrade_button","copilot_resource_panel","copilot_share_active_subthread","copilot_spaces_ga","copilot_spaces_individual_policies_ga","copilot_spark_handle_nil_friendly_name","copilot_swe_agent_authorization_status_ui","copilot_swe_agent_hide_model_picker_if_only_auto","copilot_swe_agent_issue_comment_trigger","copilot_swe_agent_pr_comment_model_picker","copilot_swe_agent_pull_request_comment_trigger","copilot_swe_agent_pull_request_merged_trigger","copilot_swe_agent_pull_request_opened_trigger","copilot_swe_agent_pull_request_synchronize_trigger","copilot_swe_agent_use_subagents","copilot_task_api_github_rest_style","copilot_token_based_billing","copilot_unconfigured_is_inherited","copilot_user_can_upgrade_plan_field","copilot_workbench_sunset","copilot_workbench_ubb","dashboard_indexeddb_caching","dashboard_lists_max_age_filter","dashboard_surface_persistent_preferences","dashboard_universe_2025","dashboard_universe_2025_feedback_dialog","fgpat_permissions_selector_redesign","flex_cta_groups_mvp","ga_enterprise_teams_ui","glc_code_quality_repo_settings_workflow_config","global_nav_react","hide_github_models_ui","hide_groups_list_for_few_groups","hyperspace_2025_logged_out_batch_1","hyperspace_2025_logged_out_batch_2","hyperspace_2025_logged_out_batch_3","in_product_messaging_datadog_monitoring","ipm_budget_deep_linking","ipm_global_transactional_message_agents","ipm_global_transactional_message_copilot","ipm_global_transactional_message_issues","ipm_global_transactional_message_prs","ipm_global_transactional_message_repos","ipm_global_transactional_message_spaces","issue_cca_modal_open","issue_fields_multi_select","issue_inline_avatars","issue_relative_time_micro","issue_viewer_subissues_optimistic_overlay","issues_dashboard_sso_structured_errors","issues_expanded_file_types","issues_in_pulls_dashboard","issues_lazy_load_comment_box_suggestions","issues_react_chrome_container_query_fix","issues_react_include_bots_in_pickers","issues_react_ui_feedback","landing_pages_ninetailed","landing_pages_web_vitals_tracking","lifecycle_label_name_updates","marketing_pages_search_explore_provider","memex_default_issue_create_repository","memex_lazy_hydrate_agent_tasks","memex_live_update_hovercard","memex_mwl_filter_field_delimiter","memex_remove_deprecated_type_issue","memex_roadmap_drag_style","merge_queue_restricted_pushers_warning","merge_status_checks_refetch_dedupe","merge_status_header_feedback","new_quick_search_dotcom","new_quick_search_ui_service","oauth_authorize_clickjacking_protection","octocaptcha_origin_optimization","pacer_layout_hide_sso_banner","personal_block_from_comment","pr_sfv_new_diff_fetch","primer_react_css_anchor_positioning","primer_react_merged_forwarded_refs","property_definition_empty_state_suggestions","prs_copilot_app_open_action","prs_css_anchor_positioning","prs_live_updates_issue_comments","prx_files","pull_request_commit_checks_dialog","pull_request_copilot_attribution_header","pull_request_files_virtualization","pull_request_overview_panel_edit_description","pull_request_stacks_feedback_dialog","pull_request_virtualization_image_estimate","pull_request_virtualization_scroll_compensation","pull_request_virtualization_scroll_intent","react_blob_isolate_code_lines","react_blob_overlay","react_blob_ssr_content_visibility","react_data_router_code_view_sidebar","react_data_router_tanstack_allowed","react_sandbox_future_tanstack","react_sw_route_component_preload","repo_issues_sidebar_layout","repo_overview_ask_copilot","repos_contributors_limited_default_range","repository_suggester_elastic_search","required_props_table_focus_order","review_involves_filter","rulesets_actor_list_editor","sample_network_conn_type","secret_scanning_pattern_alerts_link","security_center_artifact_filters_popover","semantic_similarity_duplicate_issue_detection","session_logs_ungroup_reasoning_text","site_banner_desktop_copilot_app","site_code_quality_page","site_github_app_ga_page","site_github_app_ga_page_highlight","site_global_banner_deprecate_spark","site_global_nav_spark_models_removed","spark_prompt_secret_scanning","spark_server_connection_status","suppress_automated_browser_vitals","swp_forms_disable_octocaptcha","track_notifications_settings_usage","universe26_ebsessionlaunch","update_issue_suggestions","viewscreen_sandbox","warn_inaccessible_attachments","webp_support","workbench_store_readonly"],"login":"ramsaij158-pixel","copilotApiOverrideUrl":"https://api.individual.githubcopilot.com","cmcApiUrl":"https://api.github.com/cmc_internal/api"}</script>
-<script crossorigin="anonymous" type="module" src="https://github.githubassets.com/assets/wp-runtime-403c23bdefca4440.js" defer="defer"></script>
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/app-foundation-33f393e599bf3cff.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/app-runtime-c75b74c6c9da072c.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/fetch-utilities-13e6a2728cb8d6a4.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/78205-75aff589688e0be2.js" />
-<script crossorigin="anonymous" type="module" src="https://github.githubassets.com/assets/environment-2f45837c8736801f.js" defer="defer"></script>
-<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/app-runtime.bed436009292e433.module.css" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/catalyst-fe76da6b29217672.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/selector-observer-31e911ea8e9046d3.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/relative-time-element-30f4d10f3776b4ac.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/296-cddf2922ea3a416c.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/816-29b762091e5033a9.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/65637-e357a8be37eda955.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/58494-8fde42aa50c63758.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/31721-903cd2b317a8cc03.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/46740-0a6e4901e467cc61.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/98944-e7414dc2340e0a21.js" />
-<script crossorigin="anonymous" type="module" src="https://github.githubassets.com/assets/github-elements-ce90e4066688ef22.js" defer="defer"></script>
+The first request loads the local `all-MiniLM-L6-v2` sentence-transformers model and creates the persistent Chroma database in `.chroma/`. The Docker build preloads those model weights so serving needs no model-provider network call. In an intentionally air-gapped developer machine where the weights were never cached, the app uses a deterministic token-vector contingency so the mock demonstration remains runnable; normal local/Docker usage uses MiniLM.
+
+```bash
+curl -s -X POST http://127.0.0.1:7860/ask -H 'content-type: application/json' -d '{"query":"What is the delivery fee?"}'
+curl -s -X POST http://127.0.0.1:7860/ask -H 'content-type: application/json' -d '{"query":"What is the capital of France?"}'
+```
+
+Example mock-mode JSON responses (the first snippet is deterministically drawn from the top retrieved chunk):
+
+```json
+{"answer":"Based on the retrieved context: Zepto delivers grocery and household essentials to serviceable pin codes within 10 to 30 minutes of order confirmation, depending on the customer's delivery zone and current order volume. Standard del","sources":["doc_01","doc_04","doc_03"],"confidence":1.0}
+```
+
+```json
+{"answer":"I can only answer questions about Zepto policies right now.","sources":[],"confidence":1.0}
+```
+
+## Terminal output snapshot
+
+```bash
+$ curl -s -X POST http://127.0.0.1:7860/ask \
+  -H "Content-Type: application/json" \
+  -d '{"query":"When is Zepto standard delivery free?"}' | python -m json.tool
+{
+  "answer": "Based on the retrieved context: Zepto delivers grocery and household essentials within 10 to 30 minutes of order confirmation, depending on zone and load. Standard delivery is free on orders over INR 149; orders below this threshold incur a flat INR 25 delivery fee.",
+  "sources": [
+    "doc_01",
+    "doc_04",
+    "doc_03"
+  ],
+  "confidence": 1.0
+}
+
+$ curl -s -X POST http://127.0.0.1:7860/ask \
+  -H "Content-Type: application/json" \
+  -d '{"query":"What is the capital of France?"}' | python -m json.tool
+{
+  "answer": "I can only answer questions about Zepto policies right now.",
+  "sources": [],
+  "confidence": 1.0
+}
+```
+
+## Architecture
+
+```text
+docs/doc_01.txt ... doc_08.txt
+       | ingestion + per-document chunking (PolicyStore._ingest_if_needed)
+       v
+all-MiniLM-L6-v2 local embeddings --> Chroma collection: zepto_policy_chunks
+       |                                         |
+POST /ask --> classify_intent --> policy_question --> retrieve_and_answer --> JSON
+                  |                    (top-3 cosine retrieval)                 
+                  +--> general_question --> direct_answer ---------------------->
+```
+
+1. **Ingestion:** `PolicyStore._ingest_if_needed` reads the eight corpus files; each complete document is one chunk with its `doc_XX` ID.
+2. **Embedding:** that same component uses the local `all-MiniLM-L6-v2` model and persists the vectors in Chroma collection `zepto_policy_chunks` with cosine similarity.
+3. **Retrieval:** the LangGraph `retrieve_and_answer` node embeds a policy query and fetches the top three chunks from Chroma.
+4. **Generation:** `classify_intent` routes to `retrieve_and_answer` or `direct_answer`. In mock mode, they construct deterministic answers and Pydantic validates `answer`, `sources`, and `confidence`. The optional real path uses the actual role–context–task–format–length prompt in `prompt.py`, including a negative constraint and few-shot example. Invalid real-LLM JSON is retried twice with a correction before returning a marked error response.
+
+Every generation point branches on `MOCK_LLM`: default mock mode uses the specified keyword classifier, retrieved-context template, and fixed direct response without LLM calls. With `MOCK_LLM=0`, the optional Groq-compatible implementation makes real LLM calls (requiring `GROQ_API_KEY`); embedding and Chroma retrieval remain local in both modes.
+
+## Docker
+
+```bash
+cd support_assistant
+docker build -t zepto-support .
+docker run --rm -p 7860:7860 zepto-support
+```
+
+Then send the same `POST /ask` calls to `http://127.0.0.1:7860/ask`. The image serves mock mode by default.
+
 <script crossorigin="anonymous" type="module" src="https://github.githubassets.com/assets/element-registry-4b7c1bd0b5173ea7.js" defer="defer"></script>
 <link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/runtime-helpers-b5a5a1cee32a4b87.js" />
 <link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/aria-live-f791bd0decd4aed1.js" />
